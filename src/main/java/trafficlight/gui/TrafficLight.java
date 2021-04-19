@@ -24,7 +24,7 @@ public class TrafficLight extends Light implements Observer{
 
     @Override
     public void update() {
-
+        this.turnOn(!this.isOn());
     }
 
 
