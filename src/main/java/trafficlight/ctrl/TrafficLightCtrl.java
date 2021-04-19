@@ -1,9 +1,14 @@
 package trafficlight.ctrl;
 
+import trafficlight.gui.TrafficLight;
 import trafficlight.gui.TrafficLightGui;
 import trafficlight.states.State;
 
-public class TrafficLightCtrl {
+import java.awt.*;
+
+
+public class TrafficLightCtrl  {
+    private static TrafficLightCtrl trafficLightCtrl;
 
     private State greenState;
 
@@ -19,12 +24,13 @@ public class TrafficLightCtrl {
 
     private boolean doRun = true;
 
-    public TrafficLightCtrl() {
+    private TrafficLightCtrl() {
         super();
         initStates();
         gui = new TrafficLightGui(this);
         gui.setVisible(true);
         //TODO useful to update the current state
+
     }
 
     private void initStates() {
@@ -33,6 +39,7 @@ public class TrafficLightCtrl {
             public State getNextState() {
                 previousState = currentState;
                 //TODO useful to update the current state and the old one
+
                 return yellowState;
             }
             @Override
@@ -46,6 +53,7 @@ public class TrafficLightCtrl {
             public State getNextState() {
                 previousState = currentState;
                 //TODO useful to update the current state and the old one
+
                 return yellowState;
             }
             @Override
@@ -60,10 +68,12 @@ public class TrafficLightCtrl {
                 if (previousState.equals(greenState)) {
                     previousState = currentState;
                     //TODO useful to update the current state and the old one
+
                     return redState;
                 }else {
                     previousState = currentState;
                     //TODO useful to update the current state and the old one
+
                     return greenState;
                 }
             }
@@ -108,5 +118,15 @@ public class TrafficLightCtrl {
 
     public void stop() {
         doRun = false;
+    }
+
+    public static TrafficLightCtrl getInstance(){
+        if(trafficLightCtrl == null){
+            trafficLightCtrl = new TrafficLightCtrl();
+            return trafficLightCtrl;
+        }
+        else {
+            return trafficLightCtrl;
+        }
     }
 }

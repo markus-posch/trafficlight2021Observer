@@ -1,13 +1,14 @@
 package trafficlight.gui;
 
 import trafficlight.ctrl.TrafficLightCtrl;
+import trafficlight.states.Subject;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TrafficLightGui extends JFrame implements ActionListener {
+public class TrafficLightGui extends JFrame implements ActionListener{
 
     public static final String ACTION_COMMAND_STOP = "stop";
 
@@ -27,12 +28,20 @@ public class TrafficLightGui extends JFrame implements ActionListener {
         trafficLightCtrl = ctrl;
         initLights(ctrl);
         init();
+
     }
 
     private void initLights(TrafficLightCtrl ctrl) {
         //TODO implement a part of the pattern here
         //create the TrafficLight
         //connect subject and observer
+        green = new TrafficLight(Color.green);
+        yellow = new TrafficLight(Color.yellow);
+        red = new TrafficLight(Color.red);
+        Subject observers = new Subject();
+        observers.addObserver(green);
+        observers.addObserver(yellow);
+        observers.addObserver(red);
     }
 
     private void init() {
@@ -67,4 +76,6 @@ public class TrafficLightGui extends JFrame implements ActionListener {
            trafficLightCtrl.stop();
         }
     }
+
+
 }
