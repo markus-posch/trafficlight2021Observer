@@ -54,7 +54,7 @@ public class TrafficLightCtrl  {
                 previousState = currentState;
                 //TODO useful to update the current state and the old one
                 redState.notifyObservers();
-                yellowState.notifyObservers();
+                notifyObservers();
                 return yellowState;
             }
             @Override
@@ -70,13 +70,13 @@ public class TrafficLightCtrl  {
                     previousState = currentState;
                     //TODO useful to update the current state and the old one
                     redState.notifyObservers();
-                    yellowState.notifyObservers();
+                    notifyObservers();
                     return redState;
                 }else {
                     previousState = currentState;
                     //TODO useful to update the current state and the old one
                     greenState.notifyObservers();
-                    yellowState.notifyObservers();
+                    notifyObservers();
                     return greenState;
                 }
             }
