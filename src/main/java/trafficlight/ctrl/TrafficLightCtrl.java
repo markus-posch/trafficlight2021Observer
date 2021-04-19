@@ -53,7 +53,7 @@ public class TrafficLightCtrl  {
             public State getNextState() {
                 previousState = currentState;
                 //TODO useful to update the current state and the old one
-                redState.notifyObservers();
+                yellowState.notifyObservers();
                 notifyObservers();
                 return yellowState;
             }
